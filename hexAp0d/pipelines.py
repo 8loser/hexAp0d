@@ -6,6 +6,6 @@
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-class LairPipeline(object):
+class Hexap0DPipeline(object):
     def process_item(self, item, spider):
         return item

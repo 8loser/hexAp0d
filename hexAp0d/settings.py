@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for lair project
+# Scrapy settings for hexAp0d project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'lair'
+BOT_NAME = 'hexAp0d'
 
-SPIDER_MODULES = ['lair.workers']
-NEWSPIDER_MODULE = 'lair.workers'
+SPIDER_MODULES = ['hexAp0d.spiders']
+NEWSPIDER_MODULE = 'hexAp0d.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'lair (+http://www.yourdomain.com)'
+#USER_AGENT = 'hexAp0d (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +47,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'lair.middlewares.LairSpiderMiddleware': 543,
+#    'hexAp0d.middlewares.Hexap0DSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'lair.middlewares.LairDownloaderMiddleware': 543,
+#    'hexAp0d.middlewares.Hexap0DDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'lair.pipelines.LairPipeline': 300,
+#    'hexAp0d.pipelines.Hexap0DPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

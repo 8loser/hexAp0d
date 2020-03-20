@@ -8,7 +8,7 @@
 import scrapy
 
 
-class LairItem(scrapy.Item):
+class Hexap0DItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
