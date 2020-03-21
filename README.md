@@ -14,6 +14,10 @@ jupyter notebook
 ​	- https://jupyter.org/
 
 
+# 備忘
+
+產生爬蟲
+* scrapy genspider 爬蟲名稱 爬蟲網址
 
 # 參考
 
