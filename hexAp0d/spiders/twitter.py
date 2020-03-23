@@ -32,13 +32,25 @@ class TwitterSpider(scrapy.Spider):
 
     # response 進來的位置
     def parse(self, response):
+        # 測試用
+        # from scrapy.shell import inspect_response
+        # inspect_response(response, self)
+        # 輪詢每個推文、轉推
         for article in response.xpath('//article'):
+            # 抓取推文網址後面數字當成ID
+            # https://twitter.com/帳號/status/1242116348970336261
             article_url = article.xpath(
                 './/a[contains(@href,\'/status\')]/@href').extract()[0]
             article_id = re.search('\/status\/(\d+)', article_url).group(1)
-            text = article.xpath('normalize-space(string(.))').extract()
+            # 解析推文內容
+            text = article.xpath(
+                './div/div/div/div/div[2]').xpath('normalize-space(string(.))').extract()
+            # 解析推文內圖片
+            image = article.xpath(
+                './/img[contains(@src,\'media\')]/@src').extract()
+            # 存入item
             item = ArticleItem()
             item['article_id'] = article_id
             item['text'] = text
-            item['image'] = article.xpath('.//img[contains(@src,''media'')]/@src').extract()
+            item['image'] = image
             yield item

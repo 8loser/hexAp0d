@@ -5,7 +5,8 @@ scrapy
 
 # TODO
 
-* 自動建立資料庫
+* ~~自動建立資料庫~~
+    * 定義好資料資料庫與collection，yield時會自動建立
 * 判斷已是最新資料
 * 排程自動執行
 * 加上執行log
@@ -17,10 +18,9 @@ kite
 
 ​	- https://kite.com/
 
-jupyter notebook
 
-​	- https://jupyter.org/
-
+# 測試
+有些推特帳號直接用slpash頁面render，頁面會出現 "Something went wrong, but don't fret - it's not your falut." 的訊息
 
 # 備忘
 
@@ -32,3 +32,5 @@ jupyter notebook
 https://piaosanlang.gitbooks.io/spiders
 
 https://docs.scrapy.org
+
+jupyter notebook https://jupyter.org/
