@@ -12,3 +12,11 @@ class Hexap0DItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
+
+
+class ArticleItem(scrapy.Item):
+    collection = table = 'article'
+    article_id = scrapy.Field()
+    text = scrapy.Field()
+    image = scrapy.Field()
+    # update_time = scrapy.Field(serializer=str)

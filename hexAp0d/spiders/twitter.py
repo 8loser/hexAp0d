@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
+import re
 from scrapy_splash import SplashRequest
+from hexAp0d.items import ArticleItem
 
 
 class TwitterSpider(scrapy.Spider):
@@ -31,7 +33,12 @@ class TwitterSpider(scrapy.Spider):
     # response 進來的位置
     def parse(self, response):
         for article in response.xpath('//article'):
-            text = article.xpath('normalize-space(string(.))')
-            for image in article.xpath('.//img[contains(@src,''media'')]/@src'):
-                print(image)
-            print(text)
+            article_url = article.xpath(
+                './/a[contains(@href,\'/status\')]/@href').extract()[0]
+            article_id = re.search('\/status\/(\d+)', article_url).group(1)
+            text = article.xpath('normalize-space(string(.))').extract()
+            item = ArticleItem()
+            item['article_id'] = article_id
+            item['text'] = text
+            item['image'] = article.xpath('.//img[contains(@src,''media'')]/@src').extract()
+            yield item

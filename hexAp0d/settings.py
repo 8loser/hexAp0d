@@ -27,7 +27,8 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+# 開啟下載延遲，發出的請求之間延遲3秒
+DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -79,11 +80,16 @@ SPIDER_MIDDLEWARES = {
 #    'scrapy.extensions.telnet.TelnetConsole': None,
 #}
 
+# MongoDB設置
+MONGO_URI = 'mongodb://帳號:密碼@127.0.0.1:port'
+MONGO_DB = 'lair'
+
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'hexAp0d.pipelines.Hexap0DPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'hexAp0d.pipelines.Hexap0DPipeline': 300,
+   'hexAp0d.pipelines.MongoPipeline': 400,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
