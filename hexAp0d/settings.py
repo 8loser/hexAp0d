@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import config  # 載入設定檔
 # Scrapy settings for hexAp0d project
 #
 # For simplicity, this file contains only settings considered important or
@@ -57,21 +56,20 @@ DEFAULT_REQUEST_HEADERS = {
 #    'hexAp0d.middlewares.Hexap0DDownloaderMiddleware': 543,
 # }
 
-# 如果 config.py 有設置 splashServer 則加上 splash 設定
-if (hasattr(config, 'splashServer') and (config.splashServer)):
-    DOWNLOADER_MIDDLEWARES = {
-        'scrapy_splash.SplashCookiesMiddleware': 723,
-        'scrapy_splash.SplashMiddleware': 725,
-        'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
-    }
-    # Splash server
-    SPLASH_URL = config.splashServer
-    DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
-    # 設置使用splash的http緩存
-    HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
-    SPIDER_MIDDLEWARES = {
-        'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
-    }
+# splash 設定
+# DOWNLOADER_MIDDLEWARES = {
+#     'scrapy_splash.SplashCookiesMiddleware': 723,
+#     'scrapy_splash.SplashMiddleware': 725,
+#     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+# }
+# # Splash server
+# SPLASH_URL = config.splashServer
+# DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+# 設置使用splash的http緩存
+# HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+# SPIDER_MIDDLEWARES = {
+#     'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -80,8 +78,8 @@ if (hasattr(config, 'splashServer') and (config.splashServer)):
 # }
 
 # MongoDB設置
-MONGO_URI = config.mongoDBUrl
-MONGO_DB = 'lair'
+# MONGO_URI = config.mongoDBUrl
+# MONGO_DB = 'lair'
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
