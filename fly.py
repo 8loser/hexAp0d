@@ -23,7 +23,12 @@ def fly():
         process = CrawlerProcess(s)
         # 選擇載入的爬蟲
         spider = globals()[item['spider']]
-        process.crawl(spider, urls=item['urls'])
+        '''
+        傳遞參數給 spider
+        start_urls <- item.urls 要爬取的網址
+        order <- item.order 要執行的動作
+        '''
+        process.crawl(spider, urls=item['urls'], order=item['order'])
         process.start()
 
 

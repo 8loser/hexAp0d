@@ -7,8 +7,9 @@ class SimpleSpider(scrapy.Spider):
     # 唯一名稱，不可跟其他spider重複
     name = 'simple'
 
-    def __init__(self, urls=None):
+    def __init__(self, urls=None, order=None):
         self.start_urls = urls
+        self.order = order
 
     # 這邊參考
     # https://scrapy-cookbook.readthedocs.io/zh_CN/latest/scrapy-10.html
@@ -33,5 +34,6 @@ class SimpleSpider(scrapy.Spider):
 
     # response 進來的位置
     def parse(self, response):
-        filename = response.xpath('//title/text()').get()
-        print(filename)
+        for target in self.order['target']:
+            result = response.xpath(target['pattern']).get()
+            print("{} = {}".format(target['describe'], result))
