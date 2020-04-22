@@ -1,7 +1,7 @@
 import config  # 載入設定檔
 import scrapy
 from scrapy.crawler import CrawlerProcess
-from hexAp0d.spiders import simple
+from hexAp0d.spiders.simple import SimpleSpider
 from scrapy.utils.project import get_project_settings
 import pymongo
 # 執行多個spider
@@ -11,16 +11,19 @@ import pymongo
 
 
 def fly():
+    # TODO 要加上資料庫連線失敗的判斷
     client = pymongo.MongoClient(config.mongoDBUrl)
     db = client['lair']
     collection = db.pheromone
 
     # 找出未處理的 state=0
-    for post in collection.find({'state': 0}):
-        print(post)
+    for item in collection.find({'state': 0}):
+        print(item)
         s = Setting()
         process = CrawlerProcess(s)
-        process.crawl(simple.SimpleSpider)
+        # 選擇載入的爬蟲
+        spider = globals()[item['spider']]
+        process.crawl(spider, urls=item['urls'])
         process.start()
 
 

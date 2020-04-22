@@ -6,8 +6,9 @@ from scrapy_splash import SplashRequest
 class SimpleSpider(scrapy.Spider):
     # 唯一名稱，不可跟其他spider重複
     name = 'simple'
-    allowed_domains = ['example.com']
-    start_urls = ['http://example.com/']
+
+    def __init__(self, urls=None):
+        self.start_urls = urls
 
     # 這邊參考
     # https://scrapy-cookbook.readthedocs.io/zh_CN/latest/scrapy-10.html
