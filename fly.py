@@ -1,7 +1,7 @@
 import config  # 載入設定檔
 import scrapy
 from scrapy.crawler import CrawlerProcess
-from hexAp0d.spiders.simple import SimpleSpider
+from hexAp0d.spiders.Article import ArticleSpider
 from scrapy.utils.project import get_project_settings
 import pymongo
 # 執行多個spider
@@ -28,7 +28,7 @@ def fly():
         start_urls <- item.urls 要爬取的網址
         order <- item.order 要執行的動作
         '''
-        process.crawl(spider, urls=item['urls'], order=item['order'])
+        process.crawl(spider, urls=item['urls'], foraging=item['foraging'])
         process.start()
 
 

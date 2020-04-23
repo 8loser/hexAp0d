@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from scrapy_splash import SplashRequest
+from hexAp0d.items import ArticleItem
 
 
-class SimpleSpider(scrapy.Spider):
+class ArticleSpider(scrapy.Spider):
     # 唯一名稱，不可跟其他spider重複
     name = 'simple'
 
-    def __init__(self, urls=None, order=None):
+    def __init__(self, urls=None, foraging=None):
         self.start_urls = urls
-        self.order = order
+        self.foraging = foraging
 
     # 這邊參考
     # https://scrapy-cookbook.readthedocs.io/zh_CN/latest/scrapy-10.html
@@ -34,6 +35,9 @@ class SimpleSpider(scrapy.Spider):
 
     # response 進來的位置
     def parse(self, response):
-        for target in self.order['target']:
-            result = response.xpath(target['pattern']).get()
-            print("{} = {}".format(target['describe'], result))
+        item = ArticleItem()
+        item['url'] = response.request._original_url
+        for element, how in self.foraging.items():
+            item[element] = response.xpath(how).get()
+        # 存入資料庫
+        yield item
