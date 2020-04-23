@@ -10,6 +10,7 @@ class ArticleSpider(scrapy.Spider):
     name = 'Article'
 
     def __init__(self, urls=None, foraging=None):
+        # TODO 參數空白要回傳錯誤
         self.start_urls = urls
         self.foraging = foraging
 
