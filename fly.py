@@ -18,7 +18,6 @@ def fly():
 
     # 找出未處理的 state=0
     for item in collection.find({'state': 0}):
-        print(item)
         s = Setting()
         process = CrawlerProcess(s)
         # 選擇載入的爬蟲

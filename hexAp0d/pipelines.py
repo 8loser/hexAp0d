@@ -30,7 +30,12 @@ class MongoPipeline(object):
         self.client = pymongo.MongoClient(self.mongo_uri)
         self.db = self.client[self.mongo_db]
 
+    # 資料儲存方法，資料庫或者JSON
     def process_item(self, item, spider):
+        '''
+        TODO 這邊可以加log
+        加上篩選資料條件、過濾重複資料
+        '''
         # 可以改成update動作
         self.db[item.collection].insert(dict(item))
         return item

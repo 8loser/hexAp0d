@@ -2,6 +2,7 @@
 import scrapy
 from scrapy_splash import SplashRequest
 from hexAp0d.items import ArticleItem
+import datetime
 
 
 class ArticleSpider(scrapy.Spider):
@@ -35,9 +36,14 @@ class ArticleSpider(scrapy.Spider):
 
     # response 進來的位置
     def parse(self, response):
+        # 產生的 Item
         item = ArticleItem()
+        # 抓取的網址
         item['url'] = response.request._original_url
-        for element, how in self.foraging.items():
-            item[element] = response.xpath(how).get()
+        # foraging 內有設定的元素才抓取
+        for element, feature in self.foraging.items():
+            item[element] = response.xpath(feature).get()
+        # 建立時間
+        item['create_time'] = datetime.datetime.now()
         # 存入資料庫
         yield item
