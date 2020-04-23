@@ -7,7 +7,7 @@ import datetime
 
 class ArticleSpider(scrapy.Spider):
     # 唯一名稱，不可跟其他spider重複
-    name = 'simple'
+    name = 'Article'
 
     def __init__(self, urls=None, foraging=None):
         self.start_urls = urls
@@ -40,6 +40,7 @@ class ArticleSpider(scrapy.Spider):
         item = ArticleItem()
         # 抓取的網址
         item['url'] = response.request._original_url
+        # item['url'] = response.request.url
         # foraging 內有設定的元素才抓取
         for element, feature in self.foraging.items():
             item[element] = response.xpath(feature).get()
